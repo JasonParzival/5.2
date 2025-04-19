@@ -14,46 +14,11 @@ class TwigBaseController extends BaseController {
         ],
         [
             "title" => "Уитли",
-            "url" => "/wheatley",
+            "url" => "/space-object/1",
         ],
         [
             "title" => "ГЛэДОС",
-            "url" => "/GLaDOS",
-        ]
-    ];
-    public $menuWheatley = [
-        [
-            "btn" => "primary",
-            "title" => "Уитли",
-            "url" => "/wheatley",
-        ],
-        [
-            "btn" => "link",
-            "title" => "Картинка",
-            "url" => "/wheatley/image",
-        ],
-        [
-            "btn" => "link",
-            "title" => "Описание",
-            "url" => "/wheatley/info",
-        ]
-    ];
-
-    public $menuGLaDOS = [
-        [
-            "btn" => "primary",
-            "title" => "ГЛэДОС",
-            "url" => "/GLaDOS",
-        ],
-        [
-            "btn" => "link",
-            "title" => "Картинка",
-            "url" => "/GLaDOS/image",
-        ],
-        [
-            "btn" => "link",
-            "title" => "Описание",
-            "url" => "/GLaDOS/info",
+            "url" => "/space-object/2",
         ]
     ];
 
@@ -85,8 +50,6 @@ class TwigBaseController extends BaseController {
         $context = parent::getContext(); // вызываем родительский метод
         $context['title'] = $this->title; 
         $context['nav'] = $this->nav;
-        $context['menuWheatley'] = $this->menuWheatley;
-        $context['menuGLaDOS'] = $this->menuGLaDOS;
         $context['newnav'] = $this->newnav;
         $context['temp'] = $this->temp;
         $context['urlhelp'] = $this->urlhelp;
