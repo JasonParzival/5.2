@@ -13,6 +13,8 @@
 
         require_once "../controllers/Controller404.php";
         require_once "../controllers/ObjectController.php";
+        require_once "../controllers/ObjectImageController.php";
+        require_once "../controllers/ObjectInfoController.php";
 
         //$url = $_SERVER["REQUEST_URI"];
 
@@ -32,8 +34,12 @@
         $router->add("/", MainController::class);
         $router->add("/GLaDOS", GLaDOSController::class);
         $router->add("/wheatley", WheatleyController::class);
+        $router->add("/wheatley/image", WheatleyimageController::class);
 
+        $router->add("/space-object/(?P<id>\d+)/image", ObjectImageController::class); 
+        $router->add("/space-object/(?P<id>\d+)/info", ObjectInfoController::class); 
         $router->add("/space-object/(?P<id>\d+)", ObjectController::class); 
+        
 
         $router->get_or_default(Controller404::class);
 

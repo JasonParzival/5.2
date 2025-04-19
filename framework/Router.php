@@ -58,6 +58,13 @@ class Router {
 
         // создаем экземпляр контроллера
         $controllerInstance = new $controller();
+
+        /*$controllerClass = "Controllers\\$controller"; // Добавляем namespace
+        if (!class_exists($controllerClass)) {
+            throw new \RuntimeException("Class $controllerClass not found");
+        }
+        $controllerInstance = new $controllerClass();*/
+
         // передаем в него pdo
         $controllerInstance->setPDO($this->pdo);
         $controllerInstance->setParams($matches); // передаем параметров
