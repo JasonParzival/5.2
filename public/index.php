@@ -12,11 +12,9 @@
         require_once "../controllers/GLaDOSInfoController.php";
 
         require_once "../controllers/Controller404.php";
+        require_once "../controllers/ObjectController.php";
 
-        //require_once "../controllers/BaseController.php";
-        //require_once "../controllers/TwigBaseController.php";
-
-        $url = $_SERVER["REQUEST_URI"];
+        //$url = $_SERVER["REQUEST_URI"];
 
         $loader = new \Twig\Loader\FilesystemLoader('../views');
         $twig = new \Twig\Environment($loader, [
@@ -26,13 +24,22 @@
 
         $context = [];
 
-        $controller = new Controller404($twig);
+        //$controller = new Controller404($twig);
 
         $pdo = new PDO("mysql:host=localhost;dbname=portal_db;charset=utf8", "root", "");
 
-        if ($url == "/") {
+        $router = new Router($twig, $pdo);
+        $router->add("/", MainController::class);
+        $router->add("/GLaDOS", GLaDOSController::class);
+        $router->add("/wheatley", WheatleyController::class);
+
+        $router->add("/space-object/(?P<id>\d+)", ObjectController::class); 
+
+        $router->get_or_default(Controller404::class);
+
+        /*if ($url == "/") {
             $controller = new MainController($twig);
-        } /*elseif (preg_match("#^/GLaDOS#", $url)) {
+        }*/ /*elseif (preg_match("#^/GLaDOS#", $url)) {
             $controller = new GLaDOSController($twig);
 
             if (preg_match("#^/GLaDOS/image#", $url)) {
@@ -49,9 +56,9 @@
                 $controller = new WheatleyInfoController($twig);
             }
         }*/
-        if ($controller) {
+        /*if ($controller) {
             $controller->setPDO($pdo); // а тут передаем PDO в контроллер
             $controller->get();
-        }
+        }*/
 ?>
 </div>
